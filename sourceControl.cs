@@ -34,51 +34,74 @@
 
         public static void NumberGame()
         {
-            Console.WriteLine("Pick a random letter, type \'stop\' to stop");
+            Random random = new Random();
+            int targetNumber = random.Next(1, 100); // Generates a number between 1 and 99
+            bool stop = false;
 
-            Boolean stop = false;
+            Console.WriteLine("Guess a number between 1 and 99. Type 'stop' to exit.");
+
             while (!stop)
             {
                 string input = Console.ReadLine();
-                if (input == "stop")
+
+                if (input.ToLower() == "stop")
                 {
                     Console.WriteLine("Stopping...");
                     stop = true;
                 }
-
-                if (input == "")
+                else if (int.TryParse(input, out int guess))
                 {
-                    Console.WriteLine("You picked nothing");
+                    if (guess == targetNumber)
+                    {
+                        Console.WriteLine("Congratulations! You guessed the correct number.");
+                        stop = true;
+                    }
+                    else if (guess < targetNumber)
+                    {
+                        Console.WriteLine("Too low! Try again.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Too high! Try again.");
+                    }
                 }
-
                 else
                 {
-                    Console.WriteLine("You picked: " + input);
+                    Console.WriteLine("Invalid input. Please enter a number.");
                 }
-                //TODO: Add random number generator to guess the number
-                //      Add handling for invalid input (non numbers)
             }
         }
+
 
         public static void WordGame()
         {
-            Console.WriteLine("Pick a random word, type 'stop' to stop");
+            List<string> words = new List<string> { "apple", "banana", "grape", "orange", "lemon" };
+            Random random = new Random();
+            string targetWord = words[random.Next(words.Count)]; // Selects a random word
             bool stop = false;
+
+            Console.WriteLine("Guess the word! Type 'stop' to exit.");
+
             while (!stop)
             {
                 string input = Console.ReadLine();
-                if (input == "stop")
+
+                if (input.ToLower() == "stop")
                 {
                     Console.WriteLine("Stopping...");
                     stop = true;
                 }
+                else if (input.ToLower() == targetWord)
+                {
+                    Console.WriteLine("Correct! You guessed the word.");
+                    stop = true;
+                }
                 else
                 {
-                    Console.WriteLine("You picked: " + input);
+                    Console.WriteLine("Incorrect, try again.");
                 }
             }
-            //TODO: Add random word generator to get user to guess the word
-            //      Add handling for invalid input (non words)
         }
+
     }
 }
