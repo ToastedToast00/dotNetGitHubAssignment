@@ -55,6 +55,7 @@
                     {
                         Console.WriteLine("Congratulations! You guessed the correct number.");
                         stop = true;
+                        anotherGame();
                     }
                     else if (guess < targetNumber)
                     {
@@ -70,7 +71,6 @@
                     Console.WriteLine("Invalid input. Please enter a number.");
                 }
             }
-            anotherGame();
         }
 
 
@@ -82,6 +82,8 @@
             bool stop = false;
 
             Console.WriteLine("Guess the word! Type 'stop' to exit.");
+
+            Console.WriteLine("The word will be one of the following: \napple\nbanana\ngrape\norange\nlemon");
 
             while (!stop)
             {
@@ -116,7 +118,7 @@
             else if (input.ToLower() == "n")
             {
                 Console.WriteLine("Exiting...");
-                return;
+                Environment.Exit(0);
             }
             else
             {
