@@ -70,6 +70,7 @@
                     Console.WriteLine("Invalid input. Please enter a number.");
                 }
             }
+            anotherGame();
         }
 
 
@@ -101,7 +102,27 @@
                     Console.WriteLine("Incorrect, try again.");
                 }
             }
+            anotherGame();
         }
 
+        public static void anotherGame() {
+            Console.WriteLine("(y/n) Do you wish to play another game?: ");
+            string input = Console.ReadLine();
+
+            if (input.ToLower() == "y")
+            {
+                GameSelect();
+            }
+            else if (input.ToLower() == "n")
+            {
+                Console.WriteLine("Exiting...");
+                return;
+            }
+            else
+            {
+                Console.WriteLine("Invalid input. Please enter 'y' or 'n'.");
+                anotherGame();
+            }
+        }
     }
 }
